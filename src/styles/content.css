@@ -14,6 +14,11 @@
   --mdr-panel-fg: #1f2328;
   --mdr-toolbar-bg: rgba(255, 255, 255, 0.85);
   --mdr-shadow: 0 4px 16px rgba(31, 35, 40, 0.08);
+  --mdr-alert-note: #0969da;
+  --mdr-alert-tip: #1a7f37;
+  --mdr-alert-important: #8250df;
+  --mdr-alert-warning: #9a6700;
+  --mdr-alert-caution: #cf222e;
 }
 
 :root[data-mdr-theme='dark'] {
@@ -30,6 +35,11 @@
   --mdr-panel-fg: #e6edf3;
   --mdr-toolbar-bg: rgba(13, 17, 23, 0.85);
   --mdr-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --mdr-alert-note: #4493f8;
+  --mdr-alert-tip: #3fb950;
+  --mdr-alert-important: #ab7df8;
+  --mdr-alert-warning: #d29922;
+  --mdr-alert-caution: #f85149;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -47,6 +57,11 @@
     --mdr-panel-fg: #e6edf3;
     --mdr-toolbar-bg: rgba(13, 17, 23, 0.85);
     --mdr-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    --mdr-alert-note: #4493f8;
+    --mdr-alert-tip: #3fb950;
+    --mdr-alert-important: #ab7df8;
+    --mdr-alert-warning: #d29922;
+    --mdr-alert-caution: #f85149;
   }
 }
 
@@ -430,6 +445,30 @@ mark.md-hit.md-hit-active {
   border-left: 4px solid var(--mdr-border);
   color: var(--mdr-muted);
 }
+
+/* GitHub-style alerts (> [!NOTE] / [!TIP] / [!IMPORTANT] / [!WARNING] / [!CAUTION]) */
+.md-content .markdown-alert {
+  --mdr-alert: var(--mdr-border);
+  margin: 1em 0;
+  padding: 0.6em 1em;
+  border-left: 4px solid var(--mdr-alert);
+  border-radius: 0 6px 6px 0;
+  background: color-mix(in srgb, var(--mdr-alert) 8%, transparent);
+  color: var(--mdr-fg);
+}
+.md-content .markdown-alert > :first-child { margin-top: 0; }
+.md-content .markdown-alert > :last-child { margin-bottom: 0; }
+.md-content .markdown-alert-title {
+  margin: 0 0 0.3em;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--mdr-alert);
+}
+.md-content .markdown-alert-note { --mdr-alert: var(--mdr-alert-note); }
+.md-content .markdown-alert-tip { --mdr-alert: var(--mdr-alert-tip); }
+.md-content .markdown-alert-important { --mdr-alert: var(--mdr-alert-important); }
+.md-content .markdown-alert-warning { --mdr-alert: var(--mdr-alert-warning); }
+.md-content .markdown-alert-caution { --mdr-alert: var(--mdr-alert-caution); }
 
 .md-content table {
   border-collapse: collapse;

@@ -84,6 +84,9 @@ importers:
       '@wxt-dev/module-svelte':
         specifier: ^2.0.5
         version: 2.0.5(svelte@5.56.3)(vite@8.0.16(@types/node@26.0.0)(esbuild@0.27.7)(jiti@2.7.0))(wxt@0.20.26(@types/node@26.0.0)(jiti@2.7.0)(rolldown@1.0.3))
+      playwright-core:
+        specifier: ^1.61.0
+        version: 1.61.0
       svelte:
         specifier: ^5.0.0
         version: 5.56.3
@@ -1866,6 +1869,11 @@ packages:
 
   pkg-types@2.3.1:
     resolution: {integrity: sha512-y+ichcgc2LrADuhLNAx8DFjVfgz91pRxfZdI3UDhxHvcVEZsenLO+7XaU5vOp0u/7V/wZ+plyuQxtrDlZJ+yeg==}
+
+  playwright-core@1.61.0:
+    resolution: {integrity: sha512-caX7TrY3Ml6egyDX0WUcTHDxodl/b51y5wJOdCEA36QviK/s2g081hvmGs8eaE3DWb6NYZQ6BjO/QkNRPenoPA==}
+    engines: {node: '>=18'}
+    hasBin: true
 
   points-on-curve@0.2.0:
     resolution: {integrity: sha512-0mYKnYYe9ZcqMCWhUjItv/oHjvgEsfKvnUTg8sAtnHr3GVy7rGkXCb6d5cSyqrWqL4k81b9CPg3urd+T7aop3A==}
@@ -3987,6 +3995,8 @@ snapshots:
       confbox: 0.2.4
       exsolve: 1.0.8
       pathe: 2.0.3
+
+  playwright-core@1.61.0: {}
 
   points-on-curve@0.2.0: {}
 

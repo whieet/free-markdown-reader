@@ -40,6 +40,7 @@
     "@types/markdown-it-emoji": "^3.0.1",
     "@types/markdown-it-footnote": "^3.0.4",
     "@wxt-dev/module-svelte": "^2.0.5",
+    "playwright-core": "^1.61.0",
     "svelte": "^5.0.0",
     "svelte-check": "^4.0.0",
     "typescript": "^5.6.0",

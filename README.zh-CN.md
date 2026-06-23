@@ -3,6 +3,28 @@
 > 一个免费的 MV3 Chrome 扩展，用于在本地和网页上预览 Markdown 文件，提供完整的阅读体验。
 > [English](README.md) | 中文文档
 
+## 截图
+
+<table>
+  <tr>
+    <td align="center"><b>阅读视图</b> · 大纲 · 浅色<br><img src="screenshots/img/reading-light.png" width="430" alt="阅读视图，浅色主题"></td>
+    <td align="center"><b>深色主题</b><br><img src="screenshots/img/reading-dark.png" width="430" alt="阅读视图，深色主题"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>文件夹浏览器</b> · 同级 <code>.md</code> 文件<br><img src="screenshots/img/folder.png" width="430" alt="文件夹面板列出同级文件"></td>
+    <td align="center"><b>全文搜索</b> · 匹配跳转<br><img src="screenshots/img/search.png" width="430" alt="搜索面板与实时高亮"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>实时设置</b> · 主题 · 语言 · 插件<br><img src="screenshots/img/settings.png" width="430" alt="设置面板"></td>
+    <td align="center"><b>KaTeX 数学公式 &amp; Mermaid 图表</b><br><img src="screenshots/img/diagram.png" width="430" alt="KaTeX 数学公式与 Mermaid 图表"></td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center"><b>工具栏弹窗</b><br><img src="screenshots/img/popup.png" width="240" alt="扩展工具栏弹窗"></td>
+  </tr>
+</table>
+
+<sub>所有图片均由扩展从 <a href="screenshots/demo-folder/index.md"><code>screenshots/demo-folder/index.md</code></a> 实时渲染 —— 运行 <code>node screenshots/capture.mjs</code> 可重新生成。</sub>
+
 ## 为什么做这个
 
 专注、开源的 Chrome Markdown 阅读器——**无付费墙、无数据采集、不需要账号**。核心特性：
