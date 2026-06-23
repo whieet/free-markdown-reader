@@ -1,0 +1,8 @@
+{
+  "extName": {
+    "message": "Markdown Reader"
+  },
+  "extDescription": {
+    "message": "Preview Markdown files (local & web) with TOC, folder browser, search, themes, math, diagrams and hot reload."
+  }
+}

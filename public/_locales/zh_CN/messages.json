@@ -1,0 +1,8 @@
+{
+  "extName": {
+    "message": "Markdown 阅读器"
+  },
+  "extDescription": {
+    "message": "在本地和网页中预览 Markdown 文件，支持目录树、大纲、搜索、主题、数学公式、流程图和热重载。"
+  }
+}
