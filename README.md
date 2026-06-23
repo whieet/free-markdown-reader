@@ -2,6 +2,7 @@
 
 > A free, MV3 Chrome extension that previews Markdown files (local and web)
 > with a full-featured reading experience.
+> English | [中文文档](README.zh-CN.md)
 
 ## Why
 
