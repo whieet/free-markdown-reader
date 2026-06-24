@@ -46,11 +46,11 @@ no account. Built around the features that matter:
 
 ```sh
 pnpm install
-pnpm build           # writes .output/chrome-mv3
+pnpm build           # writes dist/chrome-mv3
 ```
 
 1. Open `chrome://extensions`, enable **Developer mode**.
-2. Click **Load unpacked** and select `.output/chrome-mv3`.
+2. Click **Load unpacked** and select `dist/chrome-mv3`.
 3. Click the extension's **Details** → enable **Allow access to file URLs**
    (required for local `file://` rendering and the folder panel).
 4. Open `file:///…/example/index.md` in Chrome to try it.
@@ -58,7 +58,7 @@ pnpm build           # writes .output/chrome-mv3
 ## Dev loop
 
 ```sh
-pnpm dev             # live-reloading dev build under .output/chrome-mv3
+pnpm dev             # live-reloading dev build under dist/chrome-mv3
 pnpm check           # svelte-check + tsc
 pnpm zip             # produce installable zip
 ```

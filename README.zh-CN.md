@@ -45,11 +45,11 @@
 
 ```sh
 pnpm install
-pnpm build           # 编译产物在 .output/chrome-mv3
+pnpm build           # 编译产物在 dist/chrome-mv3
 ```
 
 1. 打开 `chrome://extensions`，打开 **开发者模式**。
-2. 点击 **加载已解压的扩展程序**，选择 `.output/chrome-mv3` 目录。
+2. 点击 **加载已解压的扩展程序**，选择 `dist/chrome-mv3` 目录。
 3. 点击扩展的 **详情** → 勾选 **允许访问文件网址**
    （渲染本地 `file://` 文件和文件夹面板必须启用）。
 4. 在 Chrome 中打开 `file:///…/example/index.md` 即可体验。
@@ -57,7 +57,7 @@ pnpm build           # 编译产物在 .output/chrome-mv3
 ## 开发流程
 
 ```sh
-pnpm dev             # 带热重载的开发版，输出在 .output/chrome-mv3
+pnpm dev             # 带热重载的开发版，输出在 dist/chrome-mv3
 pnpm check           # svelte-check + tsc
 pnpm zip             # 生成可安装的 zip 包
 ```
