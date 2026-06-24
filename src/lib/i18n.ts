@@ -52,6 +52,12 @@ const en: Dict = {
   'settings.fileAccessWarning':
     'Local file:// support is disabled. Open chrome://extensions, find Markdown Reader, and enable "Allow access to file URLs".',
 
+  // View mode
+  'view.raw': 'Raw',
+  'view.preview': 'Preview',
+  'view.showRaw': 'View raw source',
+  'view.showPreview': 'Back to preview',
+
   // Plugin labels
   'plugin.emoji': 'Emoji',
   'plugin.sub': 'Subscript',
@@ -102,6 +108,11 @@ const zh_CN: Dict = {
   'settings.shortcut.toggleTheme': '切换主题',
   'settings.fileAccessWarning':
     '本地 file:// 支持已关闭。请打开 chrome://extensions，找到 Markdown 阅读器，并启用"允许访问文件网址"。',
+
+  'view.raw': '源码',
+  'view.preview': '预览',
+  'view.showRaw': '查看源码',
+  'view.showPreview': '返回预览',
 
   'plugin.emoji': '表情符号',
   'plugin.sub': '下标',

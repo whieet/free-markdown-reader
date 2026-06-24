@@ -34,6 +34,7 @@ no account. Built around the features that matter:
 - Render `.md` / `.markdown` / `.mkd` / `.mdx` on `file://`, `http://`, and `https://`
 - 4-button side panel: **folder** browser • **outline** • **search** • **settings**
 - Light / dark / auto themes; centered or full-width layout
+- One-click **Raw / Preview** toggle to view the original Markdown source
 - markdown-it plugin set (emoji, sub/sup, ins, mark, abbr, deflist, footnote,
   task lists, multimd-table, containers, alerts, TOC)
 - **KaTeX** math and **Mermaid** diagrams

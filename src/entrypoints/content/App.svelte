@@ -15,6 +15,7 @@
   import { wirePagePlugins } from '../../lib/page-plugins'
   import { renderMermaid } from '../../lib/mermaid'
   import { send, type BroadcastCommand } from '../../lib/messaging'
+  import { t } from '../../lib/i18n'
   import { browser } from 'wxt/browser'
 
   type Heading = { id: string; level: number; text: string }
@@ -31,6 +32,12 @@
   let headings = $state<Heading[]>([])
   let contentRoot: HTMLElement | null = $state(null)
   let rawMode = $state(false)
+
+  // Monospace code glyph for the raw/preview toggle button.
+  const RAW_ICON = '</>'
+  function toggleRaw() {
+    rawMode = !rawMode
+  }
 
   function effectiveTheme(s: Settings): 'light' | 'dark' {
     if (s.theme === 'light') return 'light'
@@ -135,8 +142,7 @@
         break
       }
       case 'toggle-raw':
-        rawMode = !rawMode
-        document.body.dataset.mdrRaw = rawMode ? '1' : ''
+        toggleRaw()
         break
     }
   }
@@ -176,9 +182,25 @@
   </aside>
 
   <main class="md-main">
+    <button
+      type="button"
+      class="md-rawtoggle"
+      class:is-active={rawMode}
+      title={t(settings.language, rawMode ? 'view.showPreview' : 'view.showRaw')}
+      aria-label={t(settings.language, rawMode ? 'view.showPreview' : 'view.showRaw')}
+      aria-pressed={rawMode}
+      onclick={toggleRaw}
+    >
+      <span class="md-rawtoggle-icon">{RAW_ICON}</span>
+      <span class="md-rawtoggle-label">{t(settings.language, rawMode ? 'view.preview' : 'view.raw')}</span>
+    </button>
     <article
       class="md-content markdown-body"
+      class:is-hidden={rawMode}
       bind:this={contentRoot}
     >{@html html}</article>
+    {#if rawMode}
+      <pre class="md-raw">{raw}</pre>
+    {/if}
   </main>
 </div>
