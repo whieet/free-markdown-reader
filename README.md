@@ -43,6 +43,23 @@ no account. Built around the features that matter:
 - Persistent settings via `chrome.storage.local`, with live update across tabs
 - Keyboard shortcuts: `Alt+Shift+B/C/R/T`
 
+## Install (download — no build)
+
+- **Latest (always up to date):** [`markdown-reader-chrome.zip`](https://github.com/whieet/free-markdown-reader/releases/latest/download/markdown-reader-chrome.zip)
+- **Pinned v1.0.0:** [`markdown-reader-1.0.0-chrome.zip`](https://github.com/whieet/free-markdown-reader/releases/download/v1.0.0/markdown-reader-1.0.0-chrome.zip)
+- **Browse versions:** [Releases page](https://github.com/whieet/free-markdown-reader/releases/latest)
+
+1. Download the zip via the **Latest** link.
+2. Unzip it — the folder root directly contains `manifest.json` (no extra nested wrapper folder).
+3. Open `chrome://extensions` and enable **Developer mode** (top-right toggle).
+4. Click **Load unpacked** and select the unzipped folder itself (the one containing `manifest.json`) — don't open it and pick the file.
+5. Open the extension's **Details** → enable **Allow access to file URLs** (required for local `file://` rendering and the folder panel).
+6. Open any `.md` file to try it.
+
+- Unpacked / developer-mode install: Chrome shows a "Disable developer mode extensions" warning on startup — expected and harmless.
+- No auto-update: to update, re-download the latest zip and reload the extension.
+- **Allow access to file URLs** must be toggled on manually; the extension can't request it programmatically.
+
 ## Install (developer)
 
 ```sh

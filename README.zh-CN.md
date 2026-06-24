@@ -42,6 +42,23 @@
 - 快捷键：`Alt+Shift+B/C/R/T`
 - 中英文界面（跟随系统语言自动切换）
 
+## 安装（直接下载，无需构建）
+
+- **最新版（始终保持最新）：** [`markdown-reader-chrome.zip`](https://github.com/whieet/free-markdown-reader/releases/latest/download/markdown-reader-chrome.zip)
+- **固定 v1.0.0 版本：** [`markdown-reader-1.0.0-chrome.zip`](https://github.com/whieet/free-markdown-reader/releases/download/v1.0.0/markdown-reader-1.0.0-chrome.zip)
+- **浏览各版本：** [Releases 页面](https://github.com/whieet/free-markdown-reader/releases/latest)
+
+1. 通过 **最新版** 链接下载 zip。
+2. 解压——文件夹根目录直接包含 `manifest.json`（没有额外的嵌套外层文件夹）。
+3. 打开 `chrome://extensions`，启用 **开发者模式**（右上角开关）。
+4. 点击 **加载已解压的扩展程序**，选择解压出来的文件夹本身（即包含 `manifest.json` 的那个文件夹）——不要进入文件夹去选 `manifest.json` 文件。
+5. 打开扩展的 **详情** → 勾选 **允许访问文件网址**（渲染本地 `file://` 文件和文件夹面板必须启用）。
+6. 打开任意 `.md` 文件即可体验。
+
+- 未打包 / 开发者模式安装：Chrome 启动时会显示"停用开发者模式扩展程序"警告——属于正常现象，无害。
+- 无自动更新：要更新时，请重新下载最新 zip 并重新加载扩展。
+- **允许访问文件网址** 必须手动开启；扩展无法以编程方式请求该权限。
+
 ## 安装（开发者版本）
 
 ```sh
@@ -49,7 +66,7 @@ pnpm install
 pnpm build           # 编译产物在 dist/chrome-mv3
 ```
 
-1. 打开 `chrome://extensions`，打开 **开发者模式**。
+1. 打开 `chrome://extensions`，启用 **开发者模式**。
 2. 点击 **加载已解压的扩展程序**，选择 `dist/chrome-mv3` 目录。
 3. 点击扩展的 **详情** → 勾选 **允许访问文件网址**
    （渲染本地 `file://` 文件和文件夹面板必须启用）。
