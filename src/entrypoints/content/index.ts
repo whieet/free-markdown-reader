@@ -48,18 +48,27 @@ export default defineContentScript({
     }
 
     injectStyles()
-    takeover()
+    try {
+      takeover()
 
-    const host = document.createElement('div')
-    host.id = 'mdr-root'
-    document.body.append(host)
+      const host = document.createElement('div')
+      host.id = 'mdr-root'
+      document.body.append(host)
 
-    mount(App, {
-      target: host,
-      props: { initialRaw: raw, initialSettings: settings },
-    })
-
-    document.documentElement.style.removeProperty('visibility')
+      mount(App, {
+        target: host,
+        props: { initialRaw: raw, initialSettings: settings },
+      })
+    } catch (err) {
+      // Rendering failed — undo the takeover so the browser's original plaintext
+      // shows again instead of a blank page (mdr-active hides the native <pre>).
+      document.body.classList.remove('mdr-active')
+      document.getElementById('mdr-root')?.remove()
+      console.error('[Markdown Reader] failed to render; showing raw text:', err)
+    } finally {
+      // Always lift the anti-flash hide so a failure can never leave a blank page.
+      document.documentElement.style.removeProperty('visibility')
+    }
   },
 })
 
@@ -68,7 +77,14 @@ function takeover() {
   document.documentElement.dataset.mdrTheme ??= 'auto'
   document.body.style.margin = '0'
   const path = location.pathname
-  const name = decodeURIComponent(path.slice(path.lastIndexOf('/') + 1))
+  const seg = path.slice(path.lastIndexOf('/') + 1)
+  let name = seg
+  try {
+    name = decodeURIComponent(seg)
+  } catch {
+    // Malformed / non-UTF-8 percent-encoding (e.g. `100%.md`, GBK CJK names) —
+    // decodeURIComponent throws URIError; keep the raw segment instead.
+  }
   if (name && !document.title) document.title = name
   setFavicon()
 }

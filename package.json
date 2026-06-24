@@ -1,7 +1,7 @@
 {
   "name": "markdown-reader",
   "displayName": "Markdown Reader",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Preview Markdown files (local & web) with TOC, folder browser, search, themes, math, diagrams and hot reload.",
   "type": "module",
   "private": true,

@@ -32,6 +32,8 @@
   let headings = $state<Heading[]>([])
   let contentRoot: HTMLElement | null = $state(null)
   let rawMode = $state(false)
+  // Honour a deep-link #hash only on the first render, not on every rerender.
+  let hashHandled = false
 
   // Monospace code glyph for the raw/preview toggle button.
   const RAW_ICON = '</>'
@@ -57,9 +59,16 @@
       if (settings.mdPlugins.mermaid) {
         void renderMermaid(contentRoot, effectiveTheme(settings) === 'dark')
       }
-      // Honour deep-link #hash on first render.
-      if (location.hash) {
-        const id = decodeURIComponent(location.hash.slice(1))
+      // Honour a deep-link #hash once, on first render.
+      if (!hashHandled && location.hash) {
+        hashHandled = true
+        const frag = location.hash.slice(1)
+        let id = frag
+        try {
+          id = decodeURIComponent(frag)
+        } catch {
+          // Malformed fragment — fall back to the raw value.
+        }
         document.getElementById(id)?.scrollIntoView()
       }
     })
@@ -84,17 +93,17 @@
   })
 
   // ====== Hot reload (poll the SW which fetches the URL) ======
-  let pollTimer: number | null = null
   $effect(() => {
-    if (pollTimer != null) {
-      clearTimeout(pollTimer)
-      pollTimer = null
-    }
     if (!settings.refresh) return
+    // Scope cancellation to this effect run so an in-flight tick can't reschedule
+    // itself after cleanup (which would leak the poll past a refresh-off toggle).
+    let stopped = false
+    let timer: number | undefined
     const tick = async () => {
+      if (stopped) return
       try {
         const next = await send<string | undefined>({ type: 'fetch', url: location.href })
-        if (typeof next === 'string' && next !== raw) {
+        if (!stopped && typeof next === 'string' && next !== raw) {
           raw = next
           const pre = document.body.querySelector('pre')
           if (pre) pre.textContent = next
@@ -102,11 +111,12 @@
       } catch {
         // ignore — tab may have gone background
       }
-      pollTimer = window.setTimeout(tick, 500)
+      if (!stopped) timer = window.setTimeout(tick, 500)
     }
-    pollTimer = window.setTimeout(tick, 500)
+    timer = window.setTimeout(tick, 500)
     return () => {
-      if (pollTimer != null) clearTimeout(pollTimer)
+      stopped = true
+      if (timer != null) clearTimeout(timer)
     }
   })
 

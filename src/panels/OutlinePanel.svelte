@@ -17,19 +17,18 @@
 
   $effect(() => {
     if (!contentRoot || headings.length === 0) return
+    // Scope the lookup to the content (so a slug that collides with an app-level
+    // id like #mdr-root resolves to the heading), and escape it with CSS.escape —
+    // slugs may start with a digit or contain CJK / punctuation, which a bare
+    // `#${id}` selector can't express.
     const els = headings
-      .map((h) => contentRoot!.querySelector<HTMLElement>(`#${cssEscape(h.id)}`))
+      .map((h) => contentRoot!.querySelector<HTMLElement>('#' + CSS.escape(h.id)))
       .filter((el): el is HTMLElement => !!el)
     const teardown = createScrollSpy(els, {
       onChange: (id) => (activeId = id),
     })
     return teardown
   })
-
-  function cssEscape(s: string): string {
-    // For our slugs we only need to escape leading digits and # / .
-    return s.replace(/([!"#$%&'()*+,./:;<=>?@[\\\]^`{|}~])/g, '\\$1')
-  }
 
   function jump(ev: MouseEvent, id: string) {
     ev.preventDefault()

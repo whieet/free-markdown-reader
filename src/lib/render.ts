@@ -21,7 +21,12 @@ import { alert } from '@mdit/plugin-alert'
 import { createSlugger } from './slug'
 import type { MdPluginKey, Settings } from './storage'
 
-const FRONTMATTER = /^---[\s\S]+?---\n/
+// Strip a leading YAML frontmatter block. CRLF-tolerant; the opening and closing
+// `---` must each sit on their own line, and the first body line must contain a
+// colon (a YAML mapping). The colon test keeps a leading `---` thematic break
+// followed by prose from being eaten, while still stripping CJK / accented /
+// quoted keys (e.g. `标题: 你好`) that a `[\w-]+` test would have missed.
+const FRONTMATTER = /^---[ \t]*\r?\n[^\r\n]*:[\s\S]*?\r?\n---[ \t]*\r?\n/
 
 export interface RenderResult {
   html: string
@@ -100,29 +105,25 @@ export function createRenderer(settings: Settings) {
 type MdWithExtras = MarkdownIt & { __slugs?: string[] }
 
 function attachHeadingSlugger(md: MarkdownIt) {
-  const defaultOpen = md.renderer.rules.heading_open
-  md.renderer.rules.heading_open = function (tokens, idx, options, env, self) {
-    const token = tokens[idx]
-    const inline = tokens[idx + 1]
-    if (token && inline) {
-      // One slugger per document.
-      const slugs = (md as MdWithExtras).__slugs
-      let slugger = (env as { __slugger?: ReturnType<typeof createSlugger> })
-        .__slugger
-      if (!slugger) {
-        slugger = createSlugger()
-        ;(env as { __slugger?: ReturnType<typeof createSlugger> }).__slugger =
-          slugger
-      }
-      const text = inline.content
-      const id = slugger(text)
-      token.attrSet('id', id)
+  // Assign heading ids at PARSE time (a core rule) so every heading_open token
+  // carries its slug before any renderer runs. This lets the [[toc]] plugin —
+  // which reads existing id attrs at render time — reuse our exact ids
+  // (collision suffixes included) no matter where [[toc]] sits in the document.
+  // The default renderer serializes token.attrs, so the id still appears in the
+  // output without a custom heading_open renderer rule.
+  md.core.ruler.push('heading_slugs', (state) => {
+    const slugger = createSlugger()
+    const slugs = (md as MdWithExtras).__slugs
+    const tokens = state.tokens
+    for (let i = 0; i < tokens.length; i++) {
+      if (tokens[i].type !== 'heading_open') continue
+      const inline = tokens[i + 1]
+      if (!inline || inline.type !== 'inline') continue
+      const id = slugger(inline.content)
+      tokens[i].attrSet('id', id)
       slugs?.push(id)
     }
-    return defaultOpen
-      ? defaultOpen(tokens, idx, options, env, self)
-      : self.renderToken(tokens, idx, options)
-  }
+  })
 }
 
 export type { MdPluginKey }

@@ -46,7 +46,7 @@ no account. Built around the features that matter:
 ## Install (download — no build)
 
 - **Latest (always up to date):** [`markdown-reader-chrome.zip`](https://github.com/whieet/free-markdown-reader/releases/latest/download/markdown-reader-chrome.zip)
-- **Pinned v1.0.2:** [`markdown-reader-1.0.2-chrome.zip`](https://github.com/whieet/free-markdown-reader/releases/download/v1.0.2/markdown-reader-1.0.2-chrome.zip)
+- **Pinned v1.0.3:** [`markdown-reader-1.0.3-chrome.zip`](https://github.com/whieet/free-markdown-reader/releases/download/v1.0.3/markdown-reader-1.0.3-chrome.zip)
 - **Browse versions:** [Releases page](https://github.com/whieet/free-markdown-reader/releases/latest)
 
 1. Download the zip via the **Latest** link.
