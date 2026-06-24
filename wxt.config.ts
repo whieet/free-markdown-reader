@@ -25,6 +25,7 @@ function walkJs(dir: string, cb: (file: string) => void) {
 
 export default defineConfig({
   srcDir: 'src',
+  outDir: 'dist',
   modules: ['@wxt-dev/module-svelte'],
   manifest: {
     name: 'Markdown Reader',
