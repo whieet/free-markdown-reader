@@ -45,7 +45,7 @@
 ## 安装（直接下载，无需构建）
 
 - **最新版（始终保持最新）：** [`markdown-reader-chrome.zip`](https://github.com/whieet/free-markdown-reader/releases/latest/download/markdown-reader-chrome.zip)
-- **固定 v1.0.1 版本：** [`markdown-reader-1.0.1-chrome.zip`](https://github.com/whieet/free-markdown-reader/releases/download/v1.0.1/markdown-reader-1.0.1-chrome.zip)
+- **固定 v1.0.2 版本：** [`markdown-reader-1.0.2-chrome.zip`](https://github.com/whieet/free-markdown-reader/releases/download/v1.0.2/markdown-reader-1.0.2-chrome.zip)
 - **浏览各版本：** [Releases 页面](https://github.com/whieet/free-markdown-reader/releases/latest)
 
 1. 通过 **最新版** 链接下载 zip。

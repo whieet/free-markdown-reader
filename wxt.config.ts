@@ -31,7 +31,7 @@ export default defineConfig({
     name: 'Markdown Reader',
     description:
       'Preview Markdown files (local & web) with TOC, folder browser, search, themes, math, diagrams and hot reload.',
-    version: '1.0.1',
+    version: '1.0.2',
     default_locale: 'en',
     permissions: ['storage', 'activeTab'],
     host_permissions: ['*://*/*'],
