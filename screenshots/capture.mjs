@@ -1,7 +1,7 @@
 // Screenshot harness for Markdown Reader.
 //
 // Chrome 149 removed the `--load-extension` switch, so we load the *built*
-// extension (.output/chrome-mv3) the modern way: spawn the system Chrome with a
+// extension (dist/chrome-mv3) the modern way: spawn the system Chrome with a
 // remote-debugging port + `--enable-unsafe-extension-debugging`, connect over
 // CDP, and call the browser-level `Extensions.loadUnpacked`. The demo markdown
 // is served as text/plain over a local server so the content script takes over
@@ -20,7 +20,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url'
 const HERE = path.dirname(fileURLToPath(import.meta.url))
 const ROOT = path.resolve(HERE, '..')
 const EXE = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
-const EXT = path.join(ROOT, '.output', 'chrome-mv3')
+const EXT = path.join(ROOT, 'dist', 'chrome-mv3')
 const OUT = path.join(HERE, 'img')
 const DEMO_FILE = path.join(HERE, 'demo-folder', 'index.md')
 const DEMO = fs.readFileSync(DEMO_FILE, 'utf8')
